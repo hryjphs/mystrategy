@@ -54,7 +54,7 @@ if __name__ == '__main__':
         setting = json.load(f)[0]
 
     # Bar回测
-    engine.initStrategy(DoubleMaStrategy, setting)
+    engine.initStrategy(rStrategy, setting)
     
     # 开始跑回测
     engine.runBacktesting()
