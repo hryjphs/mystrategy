@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jun 19 17:08:27 2019
+
+@author: Administrator
+"""
+
+[{
+    "timeframeMap" :
+    {"envPeriod": "30m", "signalPeriod": "15m"},
+
+    "symbolList": ["IF88:CTP"],
+    "barPeriod" : 150,
+    "envPeriod": 100,
+    "fastPeriod": 5, 
+    "mediumPeriod": 10,
+    "slowPeriod": 20,
+    "stoplossPct":0.03,
+    "lot" :10
+}
+]
