@@ -50,7 +50,7 @@ if __name__ == '__main__':
     engine.setLog(True, "./logIF88")
     # 获取当前绝对路径
     path = os.path.split(os.path.realpath(__file__))[0]
-    with open(path+"//CTA_setting.json") as f:
+    with open(path+"//setting.json") as f:
         setting = json.load(f)[0]
 
     # Bar回测

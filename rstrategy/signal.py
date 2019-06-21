@@ -60,7 +60,7 @@ class rSignal():
         情况二exitTrendSignal2：跌破布林轨道日线中轨，考虑完全减仓
         """
         
-        upper, middle, lower = talib.BBANDS(close, matype=MA_Type.T3)
+        upper, middle, lower = ta.BBANDS(am.close, matype=ta.MA_Type.T3)
         exitTrendSignal1 = am.close[-1]<upper[-1] and  am.close[-1]>middle[-1] and am.close[-2]>upper[-2]
         exitTrendSignal2 =  am.close[-1]<middle[-1] and am.close[-2]>middle[-2]
         return exitTrendSignal1, exitTrendSignal2, upper, middle, lower

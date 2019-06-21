@@ -9,13 +9,13 @@ Created on Wed Jun 19 11:51:47 2019
 这里的Demo是一个最简单的双均线策略实现
 """
 
-from __future__ import division
+
 from vnpy.trader.vtConstant import *
 from vnpy.trader.app.ctaStrategy import CtaTemplate
 import talib as ta
 import numpy as np
 from datetime import datetime
-from signal import rSignal
+import signal
 
 
 ########################################################################
@@ -97,7 +97,7 @@ class rStrategy(CtaTemplate):
         """收到行情TICK推送"""
         pass
     #----------------------------------------------------------------------
-   def stoploss(self, bar):
+    def stoploss(self, bar):
         """止损"""
         if self.posDict[self.symbol+'_LONG']>0:
             if bar.low<self.transactionPrice*(1-self.stoplossPct):
@@ -137,7 +137,7 @@ class rStrategy(CtaTemplate):
             exitTrendSignal1, exitTrendSignal2, upper, middle, lower = algorithm.ExitSignal(amSignal, self.paraDict)
             if exitTrendSignal1 == 1:
                 exitsignal = 1
-            else if exitTrendSignal2 == 1:
+            elif exitTrendSignal2 == 1:
                 exitsignal = 2
                 
             self.chartLog['upper'].append(upper[-1])
@@ -174,7 +174,7 @@ class rStrategy(CtaTemplate):
             self.chartLog['datetime'].append(datetime.strptime(amSignal.datetime[-1], "%Y%m%d %H:%M:%S"))
             self.chartLog['mediumMa'].append(mma[-1])
             self.chartLog['fastMa'].append(fma[-1])
-            self.chartLog['slowMa'].append(sma[-1])
+            self.chartLog['slowMa'].append(lma[-1])
         return entrySignal
 
 
@@ -195,8 +195,8 @@ class rStrategy(CtaTemplate):
     #----------------------------------------------------------------------
     def onOrder(self, order):
         """收到委托变化推送"""
-        if order.offset == OFFSET_OPEN:  # 判断成交订单类型
-            self.transactionPrice = order.price_avg # 记录成交价格
+        #if order.offset == OFFSET_OPEN:  # 判断成交订单类型
+            #self.transactionPrice = order.price_avg # 记录成交价格
         # 对于无需做细粒度委托控制的策略，可以忽略onOrder
         pass
     
