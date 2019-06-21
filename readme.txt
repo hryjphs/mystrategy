@@ -1,1 +1,3 @@
 my strategy
+
+By Rui
